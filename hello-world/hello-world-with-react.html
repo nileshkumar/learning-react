@@ -1,0 +1,54 @@
+<html>
+
+<head>
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <title>Rendering element with React!</title>
+</head>
+
+<body>
+  <h2>First Example</h2>
+  <div id="root1"></div>
+
+  <h2>Second Example</h2>
+  <div id="root2"></div>
+
+  <h2>Third Example</h2>
+  <div id="root3"></div>
+
+  <script type="text/javascript">
+    //first example code
+    const rootElement1 = document.getElementById("root1");
+    const element1 = React.createElement(
+      'div', {
+        className: 'container1'
+      }, 'Hello World!!'
+    )
+    console.log(element1);
+    ReactDOM.render(element1, rootElement1)
+
+    //second example code
+    const rootElement2 = document.getElementById("root2");
+    const element2 = React.createElement(
+      'div', {
+        className: 'container2',
+        children: 'Good Morning (single element)'
+      },
+    )
+    console.log(element2);
+    ReactDOM.render(element2, rootElement2)
+
+    //third example code
+    const rootElement3 = document.getElementById("root3");
+    const element3 = React.createElement(
+      'div', {
+        className: 'container3',
+        children: ['Good Morning', ' Good Evening', ' (Array of elements)']
+      },
+    )
+    console.log(element3);
+    ReactDOM.render(element3, rootElement3)
+  </script>
+</body>
+
+</html>
