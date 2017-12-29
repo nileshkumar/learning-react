@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Using JSX with React</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+    const content = 'Hello world!!'
+    const myClassName = 'container'
+    const props = {
+      className: 'container',
+      children: 'Hello world!!'
+    }
+    //overwriting className prop
+    const element = <div {...props} className='my-class'/>
+
+    ReactDOM.render(
+      //React What
+      element,
+      //React Where
+      rootElement)
+  </script>
+
+</body>
+
+</html>
