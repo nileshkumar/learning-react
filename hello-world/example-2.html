@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <title>Rendering element with REACT</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/javascript">
+    const rootElement = document.getElementById("root");
+    const element = React.createElement(
+      'div', {
+        className: 'container'
+      }, 'Hello World!!'
+    )
+    console.log(element);
+    ReactDOM.render(
+      //React What
+      element,
+      //React Where
+      rootElement)
+
+  </script>
+
+</body>
+
+</html>
