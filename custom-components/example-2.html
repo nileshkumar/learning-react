@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Custom React Components</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const rootElement = document.getElementById("root");
+
+    //using arrow function
+    const Message = (props) => <div>{props.children}</div>  //children props
+    const element = (
+      <div className='container'>
+        <Message>Good Morning</Message>
+        <Message> How are you doing?</Message>
+      </div>
+    )
+
+    ReactDOM.render(
+      //React What
+      element,
+      //React Where
+      rootElement)
+  </script>
+
+</body>
+
+</html>
