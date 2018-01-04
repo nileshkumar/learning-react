@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Example of class component</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type='text/babel'>
+   const rootElement = document.getElementById('root')
+
+   class Circle extends React.Component{
+     render(){
+       return(
+         <div>Circle</div>
+       );
+     }
+   }
+
+   class Triangle extends React.Component{
+     render(){
+       return(
+         <div>Triangle</div>
+       );
+     }
+   }
+
+   class Rectangle extends React.Component{
+     render(){
+       return(
+         <div>Rectangle</div>
+       );
+     }
+   }
+
+   ReactDOM.render(
+     <div>
+      <Circle/>
+      <Triangle/>
+      <Rectangle/>
+     </div>,
+     rootElement
+   );
+
+
+  </script>
+
+</body>
+</html>
