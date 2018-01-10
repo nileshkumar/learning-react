@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Style components</title>
+</head>
+<body>
+  <style>
+    .box {
+      width: 50px;
+      height: 70px;
+      background-color: green;
+    }
+    .
+  </style>
+  <div id="root"></div>
+  <script type='text/jsx'>
+   const rootElement = document.getElementById('root')
+
+  //pasing style to the component
+  function Box(props){
+   return (
+     <div
+       className='box'
+       style={{paddingLeft:10}}
+       {...props}
+     />)
+  }
+
+   const element = (
+      <div>
+        <Box>Sample Box</Box>
+      </div>
+   )
+
+   ReactDOM.render(
+     element,
+     rootElement
+   );
+
+
+  </script>
+
+</body>
+</html>
