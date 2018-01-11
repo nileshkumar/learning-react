@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Complex Functional Components</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+    const rootElement = document.getElementById("root")
+
+    // function ShoppingTitle(props){
+    //   return (
+    //      <div>
+    //       <h1>{props.title}</h1>
+    //      </div>
+    //   )
+    // }
+    
+    const ShoppingTitle = (props) => <div><h1>{props.title}</h1></div>
+
+    // function ListItem(props){
+    //   return (
+    //     <li>{props.item}</li>
+    //   )
+    // }
+
+    const ListItem = (props) => <li>{props.item}</li>
+
+    function ShoppingList(props){
+      return (
+        <div>
+          <h1>{props.category}</h1>
+          <ol>
+            <ListItem item={props.items[0]}/>
+            <ListItem item={props.items[1]}/>
+            <ListItem item={props.items[2]}/>
+          </ol>
+        </div>
+      )
+    }
+
+    function ShoppingApp(props){
+      return (
+       <div>
+         <ShoppingTitle title="My shopping List" />
+         <ShoppingList category="Food list" items={['bread', 'butter', 'jam']} />
+         <ShoppingList category="Clothes list" items={['jeans', 'shirts', 'shoes']} />
+       </div>
+      )
+
+    }
+
+    ReactDOM.render(
+      <ShoppingApp/>,
+      rootElement
+    )
+  </script>
+
+</body>
+</html>
