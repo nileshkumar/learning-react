@@ -20,6 +20,14 @@
   <div id="root"></div>
   <script type='text/babel'>
    const rootElement = document.getElementById('root')
+   
+   const addStyle = {
+     backgroundColor: 'violet',
+     color: 'yellow',
+     fonSize: 20,
+     height: 50,
+     width: 100
+   }
 
    const element = (
     <div>
@@ -28,6 +36,9 @@
         style={{border: '2px solid red', paddingLeft:10}}
       >
       Box
+      </div>
+      <div style = {addStyle}>
+        Magic Box
       </div>
     </div>
    )
