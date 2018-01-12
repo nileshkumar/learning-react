@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Complex Functional Components:II </title>
+</head>
+<body>
+  <style>
+    body {
+    background-color: #a3d5d3;
+    }
+
+    table, td, th {
+      border: 1px solid black;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,td {
+      height: 50px;
+    }
+
+    td > button {
+      padding: 10px 20px;
+    }
+
+    .table-header {
+      background: #999;
+      padding: 10px 20px;
+    }
+
+    .table-content {
+      text-align: center;
+    }
+  </style>
+  <div id="root"></div>
+
+  <script type='text/jsx'>
+    const rootElement = document.getElementById("root")
+
+    function WelcomePage(props){
+        return (
+          <div>
+          <h1>{props.title}</h1>
+          <span>{props.subtitle}</span>
+          </div>
+        )
+    }
+
+    function TransportationPage(){
+      return (
+       <div>
+         <WelcomePage title="Welcome to React Tranportation"/>
+         <WelcomePage subtitle="The best place to buy vehicles online"/>
+
+        <FormOptions title="Choose Options"/>
+        <CarTransport type="Cars"/>
+        <TruckTransport type="Trucks"/>
+        <ConvertibleTransport type="Convertibles"/>
+       </div>
+      )
+    }
+
+    function TruckTransport(props){
+      return(
+        <div>
+          <h2>{props.type}</h2>
+          <TransportModel year='2014' model='D' price='$18000'/>
+          <TransportModel year='2013' model='E' price='$5200'/>
+        </div>
+      )
+    }
+
+    function ConvertibleTransport(props){
+      return(
+        <div>
+          <h2>{props.type}</h2>
+          <TransportModel year='2009' model='F' price='$2000'/>
+          <TransportModel year='2010' model='G' price='$6000'/>
+          <TransportModel year='2012' model='H' price='$12500'/>
+          <TransportModel year='2017' model='M' price='$50000'/>
+        </div>
+      )
+    }
+
+    function CarTransport(props){
+      return(
+        <div>
+          <h2>{props.type}</h2>
+        <TransportModel year='2013' model='A' price='$32000'/>
+        <TransportModel year='2011' model='B' price='$4400'/>
+        <TransportModel year='2016' model='B' price='$15500'/>
+        </div>
+      )
+    }
+
+    function TransportModel(props){
+      return(
+        <div>
+         <ul>
+          <table>
+            <th className="table-header">Year</th>
+            <th className="table-header">Model</th>
+            <th className="table-header">Price</th>
+            <th className="table-header">Buy</th>
+            <tr className="table-content">
+              <td>{props.year}</td>
+              <td>{props.model}</td>
+              <td>{props.price}</td>
+              <td><button type="button">Buy Now</button></td>
+            </tr>
+          </table>
+         </ul>
+        </div>
+      )
+    }
+
+    function FormOptions(props){
+      return(
+        <div>
+        <h2>{props.title}</h2>
+          <CheckBox label="New Only"/>
+          <SelectTag label="Select Type" values = {["All", "Cars", "Trucks", "Convertibles"]}/>
+        </div>
+       )
+    }
+
+    function SelectTag(props){
+      return(
+        <div>
+          <p>
+          {props.label}
+          <select>
+              <option value={props.values[0]}>{props.values[0]}</option>
+              <option value={props.values[1]}>{props.values[1]}</option>
+              <option value={props.values[2]}>{props.values[2]}</option>
+              <option value={props.values[3]}>{props.values[3]}</option>
+          </select>
+          </p>
+        </div>
+      )
+    }
+
+    function CheckBox(props){
+      return(
+        <div>
+          <span>{props.label}</span>
+          <input type="checkbox" />
+          </div>
+      )
+    }
+
+    ReactDOM.render(
+        <TransportationPage/>,
+        rootElement
+       )
+  </script>
+</body>
+</html>
