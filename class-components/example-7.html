@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Future State value in Class Component</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+    const rootElement = document.getElementById('root')
+
+    class Counter extends React.Component{
+      constructor(props){
+          super(props)
+          //initial state set up
+          this.state = {value:0}
+      }
+      componentDidMount(){
+          //updating state
+          this.setState((prevState, props) => {
+            return {newValue: prevState.value + 1} //futue state value
+        })
+      }
+      render(){
+          return <div>New Value: {this.state.newValue}</div>
+      }
+    }
+
+    ReactDOM.render(
+     <Counter />,
+     rootElement
+    )
+  </script>
+</body>
+</html>
