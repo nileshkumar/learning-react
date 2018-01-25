@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Lifting State Up</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/jsx">
+    const rootElement = document.getElementById("root")
+
+    class ButtonApp extends React.Component{
+      constructor(props){
+        super(props)
+          this.state = {activeArray:[0,0,0,0], details:''}
+          this.clickHandler = this.clickHandler.bind(this)
+      }
+
+      clickHandler(id, details){
+        var arr = [0,0,0,0]
+        arr[id] = 1
+        this.setState({activeArray: arr, details: details})
+        console.log(id, details)
+      }
+      render(){
+        return (
+         <div>
+           <Button id={0} name = "One" active = {this.state.activeArray[0]} clickHandler = {this.clickHandler}/>
+           <Button id={1} name = "Two" active = {this.state.activeArray[1]} clickHandler = {this.clickHandler}/>
+           <Button id={2} name = "Three" active = {this.state.activeArray[2]} clickHandler = {this.clickHandler}/>
+           <Button id={3} name = "Four" active = {this.state.activeArray[3]} clickHandler = {this.clickHandler}/>
+           <Details details = {this.state.details}/>
+         </div>
+        )
+      }
+    }
+
+    class Button extends React.Component{
+      render(){
+        return <button onClick = {() => {this.props.clickHandler(this.props.id, this.props.name)}} style = {{color: this.props.active? 'red' : 'blue'}}>{this.props.name}</button>
+      }
+    }
+
+    class Details extends React.Component{
+      render(){
+        return <h1>{this.props.details}</h1>
+      }
+    }
+
+    ReactDOM.render(
+      <ButtonApp />,
+      rootElement
+    )
+  </script>
+</body>
+</html>
