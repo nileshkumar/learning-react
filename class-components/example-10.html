@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>State and Component</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+
+   const rootElement = document.getElementById("root")
+   class TechButton extends React.Component{
+     render(){
+        return <div>
+         <LikeButton name = "Java"/>
+         <LikeButton name = "JavaScript"/>
+        </div>
+     }
+   }
+
+   class LikeButton extends React.Component{
+     constructor(props){
+       super(props)
+       this.state = {liked: false}
+       this.like_unlike = this.like_unlike.bind(this)
+     }
+
+     like_unlike(){
+       this.setState({liked: !this.state.liked})
+     }
+     render(){
+       var name = this.props.name
+       var txt = this.state.liked ? 'Unlike' : 'Like'
+       return (
+         <p>
+            <span>{name} </span>
+            <span className="fa fa-thumbs-up" onClick={this.like_unlike}>
+             {txt}
+            </span>
+         </p>
+       )
+     }
+   }
+
+    ReactDOM.render(
+      <TechButton/>,
+      rootElement
+    )
+  </script>
+
+</body>
+</html>

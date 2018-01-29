@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Componenet Interaction - I</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+   const rootElement = document.getElementById('root')
+
+   class FilteredList extends React.Component{
+     constructor(props){
+       super(props)
+       var allItems = ['elephant', 'dog', 'cat', 'anteater']
+       this.state = {initialItem: allItems, currentItem: allItems}
+       this.filterList = this.filterList.bind(this)
+     }
+
+     filterList(input){
+       var updatedList = this.state.initialItem
+       updatedList = updatedList.filter(function(item){
+           return item.search(input.target.value) !== -1
+         })
+         this.setState({currentItem: updatedList})
+     }
+     render(){
+       return(
+         <div>
+            <input type="text" placeholder="search" onChange={this.filterList}/>
+            <ListItems items = {this.state.currentItem}/>
+         </div>
+       )
+     }
+   }
+
+   class ListItems extends React.Component{
+     render(){
+       return(
+         <ul> {this.props.items.map(function(item){
+           return <li key={item}>{item}</li>
+         }
+         )}
+         </ul>
+       )
+     }
+   }
+
+    ReactDOM.render(
+      <FilteredList/>,
+      rootElement
+    )
+  </script>
+
+</body>
+</html>
