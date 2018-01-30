@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Composite Component</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/jsx">
+
+    const rootElement = document.getElementById("root")
+
+    class Multiplier extends React.Component{
+      constructor(props){
+        super(props)
+        this.state = {input1: 0, input2: 0, product: 0}
+        this.multiply = this.multiply.bind(this)
+      }
+
+      multiply(id, val){
+        if(id == 1){
+          this.setState({input1: val, product: this.state.input2 * val})
+        }
+        else if(id == 2){
+          this.setState({input2: val, product: this.state.input1 * val})
+        }
+      }
+      render(){
+        return(
+          <div>
+            <div>Enter two numbers for Multiplication:</div>
+            <NumField id = "1" action = {this.multiply}/>
+            <NumField id = "2" action = {this.multiply} />
+            <ProductField product = {this.state.product}/>
+          </div>
+        )
+      }
+    }
+
+    class NumField extends React.Component{
+      constructor(props){
+        super(props)
+        this.handleChange = this.handleChange.bind(this)
+      }
+
+      handleChange(e){
+        this.props.action(this.props.id, e.target.value)
+      }
+
+      render(){
+        return(
+          <input type="text" onChange = {this.handleChange}/>
+        )
+      }
+    }
+
+    class ProductField extends React.Component{
+      render(){
+        return(
+          <div>
+           Product: {this.props.product}
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Multiplier/>,
+       rootElement
+    )
+  </script>
+
+</body>
+</html>
