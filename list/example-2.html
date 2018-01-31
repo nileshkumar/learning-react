@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Extracting List Items</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+    const rootElement = document.getElementById('root')
+    var prodArray =[
+      {id: 100, product:"Apple"},
+      {id: 101, product:"Banana"},
+      {id: 102, product:"Carrot"},
+      {id: 103, product:"Donuts"},
+      {id: 104, product:"Eggplant"}
+    ]
+
+    function ListItems(props){
+      return(
+        <li>{props.item.product}</li> //list items are extracted that's why KEY is NOT needed
+      )
+    }
+    class ProductList extends React.Component{
+      constructor(props){
+        super(props)
+      }
+      render(){
+        var items = this.props.allItems.map((item) => {
+          return <ListItems key={item.id} item = {item} /> //React element- list - is dynamically generated that's why KEY is needed
+        })
+        return(
+         <ol>{items}</ol>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <ProductList allItems={prodArray}/>,
+      rootElement
+    )
+  </script>
+
+</body>
+</html>

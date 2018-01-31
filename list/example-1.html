@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=`device-width`, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Listing Items</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+    const rootElement = document.getElementById("root")
+
+    var prodArray =[
+      {id: 100, product:"Apple"},
+      {id: 101, product:"Banana"},
+      {id: 102, product:"Carrot"},
+      {id: 103, product:"Donuts"},
+      {id: 104, product:"Eggplant"}
+    ]
+
+    class ProductList extends React.Component{
+      render(){
+        var listItems = this.props.allItems.map((item) => {
+          return <li key={item.id}>{item.product}</li>  //need to pass key with unique value
+        })
+        return(
+          <ul>{listItems}</ul>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <ProductList allItems = {prodArray}/>,
+      rootElement
+    )
+  </script>
+
+</body>
+</html>
