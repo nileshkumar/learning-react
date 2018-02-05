@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Dynamic Form</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+    const rootElement = document.getElementById('root')
+
+    class NameForm extends React.Component{
+      constructor(props){
+        super(props)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.state = {error: this.props.getErrorMsg('')}
+      }
+      handleSubmit(e){
+        e.preventDefault()
+      }
+      handleChange(e){
+       const {value} = e.target
+       this.setState({
+         error: this.props.getErrorMsg(value),
+       })
+      }
+      render(){
+        const {error} = this.state
+        return(
+          <form onSubmit={this.handleSubmit}>
+          <label htmlFor="">
+            Name:
+            <input type="text" name='username' onChange={this.handleChange}/>
+          </label>
+          {error? <div style={{color:'red'}}>{error}</div> : null}
+          <button disabled={Boolean(error)} type="submit">Submit</button>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <NameForm getErrorMsg = {value => {
+        if(value.length < 3){
+          return `value mush be at least 3 characters, but it's only ${value.length}`
+        }
+        return null
+      }}/>,
+      rootElement
+    )
+  </script>
+</body>
+</html>

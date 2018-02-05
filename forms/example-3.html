@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src='https://unpkg.com/react@16.0.0/umd/react.development.js'></script>
+  <script src='https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js'></script>
+  <script src='https://unpkg.com/babel-standalone@6.26.0/babel.js'></script>
+  <title>Form with Multiple Inputs</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/jsx">
+  const rootElement = document.getElementById('root')
+
+function Results(props){
+  return (
+    <table>
+     <tbody>
+      <TableHeader />
+      <TableResults personsArray = {props.personsArray} />
+      </tbody>
+    </table>
+  )
+}
+function TableHeader(){
+  return (
+    <tr>
+      <td>First name</td>
+      <td>Last Name</td>
+    </tr>
+  )
+}
+function TableResults(props){
+    var resultsArray = props.personsArray.map((item, index) =>
+      <TableRow key = {index} index = {index} item = {item} />
+    )
+    return resultsArray;
+}
+
+
+  function TableRow(props){
+    return(
+      <tr>
+        <td>{props.item.firstName}</td>
+        <td>{props.item.lastName}</td>
+      </tr>
+    )
+  }
+  class App extends React.Component{
+    constructor(props){
+      super(props)
+      let personsArray=[];
+      this.state={
+        personsArray:personsArray.slice(),
+        fName:"",
+        lName:"",
+      }
+      this.handleChange=this.handleChange.bind(this);
+      this.handleSubmit=this.handleSubmit.bind(this);
+
+    }
+    handleChange(event){
+        this.setState({[event.target.id]:
+                      event.target.value});
+    }
+
+    handleSubmit(event){
+      event.preventDefault();
+      let person={
+        firstName:this.state.fName,
+        lastName:this.state.lName,
+      }
+      let tempArray=
+        this.state.personsArray.slice();
+        tempArray.push(person);
+        this.setState({personsArray:tempArray});
+        this.resetForm();
+    }
+    resetForm(){
+      this.setState({
+        fName:"",
+        lName:"",
+      })
+    }
+
+    render(){
+      return (
+        <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>First Name</div>
+          <input type="text" value={this.state.fName} onChange={this.handleChange} id="fName"/>
+          <div>Last Name</div>
+          <input type="text" value={this.state.lName} onChange={this.handleChange} id="lName"/>
+          <div>
+          <input type="submit" className="submit" value="submit" />
+          </div>
+
+        </form>
+          <Results personsArray={this.state.personsArray} />
+        </div>
+      )
+    }
+  }
+
+  ReactDOM.render(
+    <App/>,
+    rootElement
+  )
+  </script>
+
+</body>
+</html>
